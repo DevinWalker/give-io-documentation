@@ -2,7 +2,6 @@
 
 ## Get All Users
 
-
 ```shell
 curl "https://api.give.io/v1/users"
   -H "Authorization: <API_KEY>"
@@ -17,7 +16,7 @@ curl "https://api.give.io/v1/users"
 ```json
 [
   {
-    "id": 1,
+    "ID": 1,
     "first_name": "",
     "last_name": "",
     "email": "",
@@ -50,7 +49,7 @@ curl "https://api.give.io/v1/users/2"
 
 ```json
 {
-  "id": 1,
+  "ID": 1,
   "first_name": "",
   "last_name": "",
   "email": "",
@@ -64,6 +63,8 @@ This endpoint retrieves a specific user.
 ### HTTP Request
 
 `GET https://api.give.io/v1/users/<ID>`
+
+## Create a New User
 
 ## Delete a Specific User
 
@@ -81,7 +82,7 @@ curl "https://api.give.io/v1/users/2"
 
 ```json
 {
-  "id": 1,
+  "ID": 1,
   "first_name": "",
   "last_name": "",
   "email": "",
