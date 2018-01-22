@@ -11,6 +11,7 @@ includes:
   - donors
   - donations
   - subscriptions
+  - campaigns
   - organizations
   - chapters
 
