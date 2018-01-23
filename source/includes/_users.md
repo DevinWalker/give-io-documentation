@@ -1,5 +1,29 @@
 # Users
 
+### User Object
+Property | Description
+--------- | -------
+ID | Unique ID
+first_name | First Name
+last_name | Last Name
+email | Valid Contact Email
+organizations | A collection of organizations that this user belongs to
+avatar | URL to User's Avatar image
+created_at | ISO8601 Timestamp of Account Creation
+updated_at | ISO8601 Timestamp of the last account update
+last_login | ISO8601 Timestamp of the last valid login
+
+### Roles
+
+Role | Permissions
+--------- | -------
+Owner | TBD
+Administrator | TBD
+Manager | TBD
+Developer | TBD
+Analyst | TBD
+Support | TBD
+
 ## Get All Users
 
 ```shell
@@ -16,21 +40,77 @@ $ curl https://api.give.io/v1/users
 ```json
 [
   {
-    "ID": 1,
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "avatar": "",
-    "created_at": ""
+    "ID": 862,
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "jdoe@email.com",
+    "organizations": [
+      {
+        "ID": 234,
+        "name": "",
+        "role": "owner"
+      }
+    ],
+    "avatar": "https://avatars.give.io/862/240.jpg",
+    "created_at": "2018-07-30 13:28:32",
+    "last_login": "2018-08-12 08:04:00"
   }
 ]
 ```
 
-This endpoint retrieves all users.
+This endpoint retrieves all users as a paginated collection.
 
 ### HTTP Request
 
 `GET https://api.give.io/v1/users`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+limit  | 25 | Limit number of results returned per page.
+page | 1 | Used along with limit to determine offset.
+
+
+## Get Users From Organization
+
+```shell
+$ curl https://api.give.io/v1/organization/234/users
+  -H "Authorization: <API_KEY>"
+```
+
+```javascript
+// Javascript Examples Coming Soon
+```
+
+> The above request returns a collection of JSON objects structured like this:
+
+```json
+[
+  {
+    "ID": 862,
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "jdoe@email.com",
+    "organizations": [
+      {
+        "ID": 234,
+        "name": "",
+        "role": "owner"
+      }
+    ],
+    "avatar": "https://avatars.give.io/862/240.jpg",
+    "created_at": "2018-07-30 13:28:32",
+    "last_login": "2018-08-12 08:04:00"
+  }
+]
+```
+
+This endpoint retrieves all users belonging to a given organization as a paginated collection.
+
+### HTTP Request
+
+`GET https://api.give.io/v1/organization/<ID>/users`
 
 ### Query Parameters
 
@@ -55,12 +135,20 @@ $ curl https://api.give.io/v1/users/2
 
 ```json
 {
-  "ID": 1,
-  "first_name": "",
-  "last_name": "",
-  "email": "",
-  "avatar": "",
-  "created_at": ""
+  "ID": 862,
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "jdoe@email.com",
+  "organizations": [
+    {
+      "ID": 234,
+      "name": "",
+      "role": "owner"
+    }
+  ],
+  "avatar": "https://avatars.give.io/862/240.jpg",
+  "created_at": "2018-07-30 13:28:32",
+  "last_login": "2018-08-12 08:04:00"
 }
 ```
 
@@ -102,6 +190,8 @@ email | YES | Valid Email Address
 password | YES | User's initial password
 first_name  | YES | User's First Name
 last_name | NO | User's Last Name
+organization | NO | ID of initial organization
+role | NO | Initial Permissions Role, ignored if organization is not set
 
 ## Delete a Specific User
 
@@ -119,17 +209,26 @@ $ curl https://api.give.io/v1/users/2
 
 ```json
 {
-  "ID": 1,
-  "first_name": "",
-  "last_name": "",
-  "email": "",
-  "avatar": "",
-  "created_at": "",
-  "deleted_at": ""
+  "ID": 862,
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "jdoe@email.com",
+  "organizations": [
+    {
+      "ID": 234,
+      "name": "",
+      "role": "owner"
+    }
+  ],
+  "avatar": "https://avatars.give.io/862/240.jpg",
+  "created_at": "2018-07-30 13:28:32",
+  "last_login": "2018-08-12 08:04:00",
+  "deleted_at": "2018-08-15 11:14:58"
 }
 ```
 
-This endpoint deletes a specific user.
+This endpoint deletes a specific user from the system entirely. The user will be removed from any organizations they belong.
+This call will return an error if the user has an Owner role in any organization that has not been removed first.
 
 ### HTTP Request
 
