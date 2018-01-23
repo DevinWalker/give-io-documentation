@@ -14,7 +14,7 @@ curl https://api.give.io/v1/authenticate
 
 > Make sure to replace `<API_KEY>` with your valid API key.
 
-Give.io uses API keys to allow access to the API. During beta development, public access is not available.
+Give.io uses API keys to allow access to the API. **During beta development, public access is not available**.
 
 Give.io expects for the API key to be included in all API requests to the server in a header that looks like the following:
 

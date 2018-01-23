@@ -7,13 +7,13 @@ language_tabs: # must be one of https://git.io/vQNgJ
 includes:
   - introduction
   - authentication
+  - index
   - users
   - donors
   - donations
   - subscriptions
   - campaigns
   - organizations
-  - chapters
 
 search: true
 ---
