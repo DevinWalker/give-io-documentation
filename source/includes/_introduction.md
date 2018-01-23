@@ -21,10 +21,16 @@ https://api.give.io/v1/
 
 Occasionally you might encounter errors when accessing the API. There are four possible types:
 
-* Invalid requests, such as using an unsupported HTTP method will result in `400 Bad Request`.
-* Authentication or permission errors, such as incorrect API keys will result in `401 Unauthorized`.
-* Requests to resources that don't exist or are missing required parameters will result in `404 Not Found`.
-* Requests that cannot be processed due to a server error will result in `500 Internal Server Error`.
+Error Code | Meaning
+---------- | -------
+400 | Bad Request -- Invalid requests, such as using an unsupported HTTP method will result in `400 Bad Request`.
+401 | Unauthorized -- Authentication or permission errors, such as incorrect API keys will result in `401 Unauthorized`.
+403 | Forbidden -- The request is hidden for administrators only.
+404 | Not Found -- Requests to resources that don't exist or are missing required parameters will result in `404 Not Found`.
+429 | Too Many Requests -- Request too large. Slow down!
+500 | Internal Server Error -- Requests that cannot be processed due to a server error will result in `500 Internal Server Error`.
+503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+
 
 > `400 Bad Request` example:
 
