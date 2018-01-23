@@ -3,7 +3,7 @@
 ## Get All Campaigns
 
 ```shell
-curl "https://api.give.io/v1/users/2/campaigns"
+curl https://api.give.io/v1/users/2/campaigns
   -H "Authorization: <API_KEY>"
 ```
 

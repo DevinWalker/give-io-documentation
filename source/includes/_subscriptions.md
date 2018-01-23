@@ -3,7 +3,7 @@
 ## Get All Subscriptions
 
 ```shell
-curl "https://api.give.io/v1/subscriptions?filter=user&ID=2"
+curl https://api.give.io/v1/subscriptions?filter=user&ID=2
   -H "Authorization: <API_KEY>"
 ```
 

@@ -4,7 +4,7 @@
 
 
 ```shell
-curl "https://api.give.io/v1/users/2/donors"
+curl https://api.give.io/v1/users/2/donors
   -H "Authorization: <API_KEY>"
 ```
 
@@ -44,7 +44,7 @@ This endpoint retrieves all donors tied to an account.
 
 
 ```shell
-curl "https://api.give.io/v1/donors/2"
+curl https://api.give.io/v1/donors/2
   -H "Authorization: <API_KEY>"
 ```
 
