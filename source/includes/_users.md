@@ -32,6 +32,12 @@ This endpoint retrieves all users.
 
 `GET https://api.give.io/v1/users`
 
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+limit  | 25 | Limit number of results returned per page.
+page | 1 | Used along with limit to determine offset.
 
 ## Get a Specific User
 
@@ -78,7 +84,7 @@ curl "https://api.give.io/v1/users/2"
 // Javscript
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns the user as it existed before deletion:
 
 ```json
 {
