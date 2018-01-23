@@ -3,7 +3,7 @@
 ## Get All Users
 
 ```shell
-curl "https://api.give.io/v1/users"
+$ curl https://api.give.io/v1/users
   -H "Authorization: <API_KEY>"
 ```
 
@@ -43,7 +43,7 @@ page | 1 | Used along with limit to determine offset.
 
 
 ```shell
-curl "https://api.give.io/v1/users/2"
+$ curl https://api.give.io/v1/users/2
   -H "Authorization: <API_KEY>"
 ```
 
@@ -72,10 +72,41 @@ This endpoint retrieves a specific user.
 
 ## Create a New User
 
+Create a new user within Give.io. Data must be sent as JSON.
+
+```shell
+# As a data string
+$ curl https://api.give.io/v1/users
+  -X POST
+  -d '{"first_name":"John", "last_name":"Doe", "email": "jdoe@email.com", "password": "ABC123"}'
+  -H "Content-Type: application/json"
+  -H "Authorization: <API_KEY>"
+
+# From a file
+$ curl https://api.give.io/v1/users
+  -X POST
+  -d "@data.json"
+  -H "Content-Type: application/json"
+  -H "Authorization: <API_KEY>"
+```
+
+```javascript
+// Javscript
+```
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+email | YES | Valid Email Address
+password | YES | User's initial password
+first_name  | YES | User's First Name
+last_name | NO | User's Last Name
+
 ## Delete a Specific User
 
 ```shell
-curl "https://api.give.io/v1/users/2"
+$ curl https://api.give.io/v1/users/2
   -X DELETE
   -H "Authorization: <API_KEY>"
 ```
