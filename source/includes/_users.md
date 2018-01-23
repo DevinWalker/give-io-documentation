@@ -182,6 +182,10 @@ $ curl https://api.give.io/v1/users
 // Javscript
 ```
 
+### HTTP Request
+
+`POST https://api.give.io/v1/users`
+
 ### Query Parameters
 
 Parameter | Required | Description
@@ -192,6 +196,78 @@ first_name  | YES | User's First Name
 last_name | NO | User's Last Name
 organization | NO | ID of initial organization
 role | NO | Initial Permissions Role, ignored if organization is not set
+
+## Update a User
+
+Update a user's profile details. Data must be sent as JSON.
+Data should be sent as a POST request, not a PUT request.
+Only the fields that are passed are evaluated. To remove a
+field, pass an empty string as the property value.
+
+```shell
+# As a data string
+$ curl https://api.give.io/v1/users/2
+  -X POST
+  -d '{"first_name":"John", "last_name":"Doe", "email": "jdoe@email.com", "password": "ABC123"}'
+  -H "Content-Type: application/json"
+  -H "Authorization: <API_KEY>"
+
+# From a file
+$ curl https://api.give.io/v1/users/2
+  -X POST
+  -d "@data.json"
+  -H "Content-Type: application/json"
+  -H "Authorization: <API_KEY>"
+```
+
+```javascript
+// Javscript
+```
+
+### HTTP Request
+
+`POST https://api.give.io/v1/users/<ID>`
+
+## Upload an Avatar
+
+Uploads a file to the system to be used as a User Avatar, or profile image.
+
+```shell
+$ curl https://api.give.io/v1/users/2/avatar
+  -X POST
+  -d "@john-headshot.jpg"
+  -H "Content-Type: application/json"
+  -H "Authorization: <API_KEY>"
+```
+
+```javascript
+// Javscript
+```
+
+> The above command returns a User object, with an updated avatar property:
+
+```json
+{
+  "ID": 862,
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "jdoe@email.com",
+  "organizations": [
+    {
+      "ID": 234,
+      "name": "",
+      "role": "owner"
+    }
+  ],
+  "avatar": "https://avatars.give.io/862/240.jpg",
+  "created_at": "2018-07-30 13:28:32",
+  "last_login": "2018-08-12 08:04:00"
+}
+```
+
+### HTTP Request
+
+`POST https://api.give.io/v1/users/<ID>/avatar`
 
 ## Delete a Specific User
 
