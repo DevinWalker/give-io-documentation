@@ -229,13 +229,28 @@
             <a href="#users" class="toc-h1 toc-link" data-title="users">Users</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#user-object" class="toc-h2 toc-link" data-title="user-object">User Object</a>
+                  </li>
+                  <li>
+                    <a href="#roles" class="toc-h2 toc-link" data-title="roles">Roles</a>
+                  </li>
+                  <li>
                     <a href="#get-all-users" class="toc-h2 toc-link" data-title="get-all-users">Get All Users</a>
+                  </li>
+                  <li>
+                    <a href="#get-users-from-organization" class="toc-h2 toc-link" data-title="get-users-from-organization">Get Users From Organization</a>
                   </li>
                   <li>
                     <a href="#get-a-specific-user" class="toc-h2 toc-link" data-title="get-a-specific-user">Get a Specific User</a>
                   </li>
                   <li>
                     <a href="#create-a-new-user" class="toc-h2 toc-link" data-title="create-a-new-user">Create a New User</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-user" class="toc-h2 toc-link" data-title="update-a-user">Update a User</a>
+                  </li>
+                  <li>
+                    <a href="#upload-an-avatar" class="toc-h2 toc-link" data-title="upload-an-avatar">Upload an Avatar</a>
                   </li>
                   <li>
                     <a href="#delete-a-specific-user" class="toc-h2 toc-link" data-title="delete-a-specific-user">Delete a Specific User</a>
@@ -368,13 +383,20 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Introduction to rough draft here</p>
-<h1 id='authentication'>Authentication</h1>
+<p>The Give.io REST API utilizes predictable, resource-oriented endpoints, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs. JSON is returned by all API responses, including errors.</p>
+
+<p>At this time, public registration for Developer Keys is not available.</p>
+
+<blockquote>
+<p>The base API is located here:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>https://api.give.io/v1/
+</code></pre><h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://api.give.io/v1/authenticate"</span>
+curl https://api.give.io/v1/authenticate
   -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
@@ -391,7 +413,83 @@ curl <span class="s2">"https://api.give.io/v1/authenticate"</span>
 <aside class="notice">
 You must replace <code>&lt;API_KEY&gt;</code> with your personal API key.
 </aside>
-<h1 id='users'>Users</h1><h2 id='get-all-users'>Get All Users</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.give.io/v1/users"</span>
+<h1 id='users'>Users</h1><h3 id='user-object'>User Object</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>Unique ID</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>First Name</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>Last Name</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Valid Contact Email</td>
+</tr>
+<tr>
+<td>organizations</td>
+<td>A collection of organizations that this user belongs to</td>
+</tr>
+<tr>
+<td>avatar</td>
+<td>URL to User&#39;s Avatar image</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>ISO8601 Timestamp of Account Creation</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>ISO8601 Timestamp of the last account update</td>
+</tr>
+<tr>
+<td>last_login</td>
+<td>ISO8601 Timestamp of the last valid login</td>
+</tr>
+</tbody></table>
+<h3 id='roles'>Roles</h3>
+<table><thead>
+<tr>
+<th>Role</th>
+<th>Permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Owner</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Administrator</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Manager</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Developer</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Analyst</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Support</td>
+<td>TBD</td>
+</tr>
+</tbody></table>
+<h2 id='get-all-users'>Get All Users</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/users
   -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
@@ -400,19 +498,94 @@ You must replace <code>&lt;API_KEY&gt;</code> with your personal API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">862</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@email.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars.give.io/862/240.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-30 13:28:32"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12 08:04:00"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all users.</p>
+<p>This endpoint retrieves all users as a paginated collection.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.give.io/v1/users</code></p>
-<h2 id='get-a-specific-user'>Get a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.give.io/v1/users/2"</span>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>25</td>
+<td>Limit number of results returned per page.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>Used along with limit to determine offset.</td>
+</tr>
+</tbody></table>
+<h2 id='get-users-from-organization'>Get Users From Organization</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/organization/234/users
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
+</code></pre>
+<blockquote>
+<p>The above request returns a collection of JSON objects structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">862</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@email.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars.give.io/862/240.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-30 13:28:32"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12 08:04:00"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all users belonging to a given organization as a paginated collection.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.give.io/v1/organization/&lt;ID&gt;/users</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>25</td>
+<td>Limit number of results returned per page.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>Used along with limit to determine offset.</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-specific-user'>Get a Specific User</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/users/2
   -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// javascript</span>
 </code></pre>
@@ -420,41 +593,166 @@ You must replace <code>&lt;API_KEY&gt;</code> with your personal API key.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">862</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars.give.io/862/240.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-30 13:28:32"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12 08:04:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific user.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://api.give.io/v1/users/&lt;ID&gt;</code></p>
-<h2 id='create-a-new-user'>Create a New User</h2><h2 id='delete-a-specific-user'>Delete a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.give.io/v1/users/2"</span>
+<h2 id='create-a-new-user'>Create a New User</h2>
+<p>Create a new user within Give.io. Data must be sent as JSON.</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># As a data string</span>
+<span class="gp">$ </span>curl https://api.give.io/v1/users
+  -X POST
+  -d <span class="s1">'{"first_name":"John", "last_name":"Doe", "email": "jdoe@email.com", "password": "ABC123"}'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+
+<span class="c"># From a file</span>
+<span class="gp">$ </span>curl https://api.give.io/v1/users
+  -X POST
+  -d <span class="s2">"@data.json"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
+</code></pre><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST https://api.give.io/v1/users</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>YES</td>
+<td>Valid Email Address</td>
+</tr>
+<tr>
+<td>password</td>
+<td>YES</td>
+<td>User&#39;s initial password</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>YES</td>
+<td>User&#39;s First Name</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>NO</td>
+<td>User&#39;s Last Name</td>
+</tr>
+<tr>
+<td>organization</td>
+<td>NO</td>
+<td>ID of initial organization</td>
+</tr>
+<tr>
+<td>role</td>
+<td>NO</td>
+<td>Initial Permissions Role, ignored if organization is not set</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-user'>Update a User</h2>
+<p>Update a user&#39;s profile details. Data must be sent as JSON.
+Data should be sent as a POST request, not a PUT request.
+Only the fields that are passed are evaluated. To remove a
+field, pass an empty string as the property value.</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># As a data string</span>
+<span class="gp">$ </span>curl https://api.give.io/v1/users/2
+  -X POST
+  -d <span class="s1">'{"first_name":"John", "last_name":"Doe", "email": "jdoe@email.com", "password": "ABC123"}'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+
+<span class="c"># From a file</span>
+<span class="gp">$ </span>curl https://api.give.io/v1/users/2
+  -X POST
+  -d <span class="s2">"@data.json"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
+</code></pre><h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST https://api.give.io/v1/users/&lt;ID&gt;</code></p>
+<h2 id='upload-an-avatar'>Upload an Avatar</h2>
+<p>Uploads a file to the system to be used as a User Avatar, or profile image.</p>
+<pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/users/2/avatar
+  -X POST
+  -d <span class="s2">"@john-headshot.jpg"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
+</code></pre>
+<blockquote>
+<p>The above command returns a User object, with an updated avatar property:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">862</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars.give.io/862/240.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-30 13:28:32"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12 08:04:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST https://api.give.io/v1/users/&lt;ID&gt;/avatar</code></p>
+<h2 id='delete-a-specific-user'>Delete a Specific User</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/users/2
   -X DELETE
   -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns the user as it existed before deletion:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">862</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars.give.io/862/240.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-30 13:28:32"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12 08:04:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-15 11:14:58"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific user.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<p>This endpoint deletes a specific user from the system entirely. The user will be removed from any organizations they belong.
+This call will return an error if the user has an Owner role in any organization that has not been removed first.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>DELETE https://api.give.io/v1/users/&lt;ID&gt;</code></p>
 
 <aside class="warning">This action is immediate and irreversible.</aside>
-<h1 id='donors'>Donors</h1><h2 id='get-all-donors'>Get All Donors</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.give.io/v1/users/2/donors"</span>
+<h1 id='donors'>Donors</h1><h2 id='get-all-donors'>Get All Donors</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/users/2/donors
   -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
@@ -481,7 +779,7 @@ You must replace <code>&lt;API_KEY&gt;</code> with your personal API key.
 <p>This endpoint retrieves all donors tied to an account.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.give.io/v1/users/&lt;ID&gt;/donors</code></p>
-<h2 id='get-a-specific-donor'>Get a Specific Donor</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.give.io/v1/donors/2"</span>
+<h2 id='get-a-specific-donor'>Get a Specific Donor</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/donors/2
   -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// javascript</span>
 </code></pre>
@@ -506,7 +804,7 @@ You must replace <code>&lt;API_KEY&gt;</code> with your personal API key.
 <p>This endpoint retrieves a specific donor.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://api.give.io/v1/donors/&lt;ID&gt;</code></p>
-<h2 id='create-a-donor'>Create a Donor</h2><h2 id='update-a-donor'>Update a Donor</h2><h2 id='delete-a-specific-donor'>Delete a Specific Donor</h2><h1 id='donations'>Donations</h1><h2 id='get-all-donations'>Get All Donations</h2><h2 id='get-a-specific-donation'>Get a Specific Donation</h2><h2 id='create-a-donation'>Create a Donation</h2><h2 id='update-a-donation'>Update a Donation</h2><h2 id='delete-a-specific-donation'>Delete a Specific Donation</h2><h1 id='subscriptions'>Subscriptions</h1><h2 id='get-all-subscriptions'>Get All Subscriptions</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.give.io/v1/subscriptions?filter=user&amp;ID=2"</span>
+<h2 id='create-a-donor'>Create a Donor</h2><h2 id='update-a-donor'>Update a Donor</h2><h2 id='delete-a-specific-donor'>Delete a Specific Donor</h2><h1 id='donations'>Donations</h1><h2 id='get-all-donations'>Get All Donations</h2><h2 id='get-a-specific-donation'>Get a Specific Donation</h2><h2 id='create-a-donation'>Create a Donation</h2><h2 id='update-a-donation'>Update a Donation</h2><h2 id='delete-a-specific-donation'>Delete a Specific Donation</h2><h1 id='subscriptions'>Subscriptions</h1><h2 id='get-all-subscriptions'>Get All Subscriptions</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/subscriptions?filter<span class="o">=</span>user&amp;ID<span class="o">=</span>2
   -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
@@ -552,7 +850,7 @@ You must replace <code>&lt;API_KEY&gt;</code> with your personal API key.
 <td>The ID of the filter object used to limit results.</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-specific-subscription'>Get a Specific Subscription</h2><h2 id='create-a-subscription'>Create a Subscription</h2><h2 id='update-a-subscription'>Update a Subscription</h2><h2 id='delete-a-specific-subscription'>Delete a Specific Subscription</h2><h1 id='campaigns'>Campaigns</h1><h2 id='get-all-campaigns'>Get All Campaigns</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.give.io/v1/users/2/campaigns"</span>
+<h2 id='get-a-specific-subscription'>Get a Specific Subscription</h2><h2 id='create-a-subscription'>Create a Subscription</h2><h2 id='update-a-subscription'>Update a Subscription</h2><h2 id='delete-a-specific-subscription'>Delete a Specific Subscription</h2><h1 id='campaigns'>Campaigns</h1><h2 id='get-all-campaigns'>Get All Campaigns</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/users/2/campaigns
   -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
