@@ -29,7 +29,7 @@ curl https://api.give.io/v1/campaigns
     "goal": {
       "enabled": true,
       "type": "amount",
-      "value": "1000.000000",
+      "value": "1000",
       "progress_color": "",
       "auto_close": true
     },
