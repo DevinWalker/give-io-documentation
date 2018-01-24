@@ -3,7 +3,7 @@
 ## Get All Campaigns
 
 ```shell
-curl https://api.give.io/v1/users/2/campaigns
+curl https://api.give.io/v1/campaigns
   -H "Authorization: <API_KEY>"
 ```
 
@@ -17,7 +17,9 @@ curl https://api.give.io/v1/users/2/campaigns
 [
   {
     "ID": 1,
+    "title": "",
     "created_at": "",
+    "last_modified": "",
     "type": "standard",
     "start_at": "",
     "end_at": "",
@@ -27,10 +29,11 @@ curl https://api.give.io/v1/users/2/campaigns
     "goal": {
       "enabled": true,
       "type": "amount",
-      "value": "1000.000000"
+      "value": "1000.000000",
+      "progress_color": "",
+      "auto_close": true
     },
-    "progress_color": "",
-    "autoclose": true,
+    
     "terms": {
       "enabled": true,
       "label": "Terms & Conditions",
@@ -44,11 +47,41 @@ This endpoint retrieves all users.
 
 ### HTTP Request
 
-`GET https://api.give.io/v1/users/<ID>/campaigns`
+`GET https://api.give.io/v1/campaigns/`
+
 
 ## Get a Specific Campaign
 
-## Create a Campaign
+`GET https://api.give.io/v1/campaigns/<ID>/`
+
+This endpoint retrieves a specific campaign.
+
+```shell
+curl https://api.give.io/v1/campaigns/
+  -H "Authorization: <API_KEY>"
+```
+
+### HTTP Request
+
+`GET https://api.give.io/v1/campaigns/ID/`
+
+## Create a New Campaign
+
+Create a new campaign within Give.io. Data must be sent as JSON.
+
+```shell
+curl https://api.give.io/v1/campaigns/
+  -H "Authorization: <API_KEY>"
+```
+
+### HTTP Request
+
+`POST https://api.give.io/v1/campaigns/`
+
+Parameter | Required | Description
+--------- | -------- | -----------
+title | Yes | "Campaign <ID>" | The title of the campaign. 
+
 
 ## Update a Campaign
 

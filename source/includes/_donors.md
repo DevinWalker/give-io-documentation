@@ -22,13 +22,16 @@ curl https://api.give.io/v1/users/2/donors
     "middle_initial": "",
     "last_name": "",
     "title": "",
-    "email": "",
+    "company_name": "",
+    "primary_email": "",
     "avatar": "",
     "created_at": "",
-    "purchase_count": "",
-    "purchae_value": "",
+    "donation_count": "",
+    "donation_value": "",
+    "additional_emails": [],
     "subscriptions": [],
-    "donations": []
+    "donations": [],
+    "addresses": []
   }
 ]
 ```
