@@ -909,7 +909,6 @@ This call will return an error if the user has an Owner role in any organization
     </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="s2">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="s2">"primary_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="s2">"donation_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="s2">"donation_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -931,16 +930,15 @@ This call will return an error if the user has an Owner role in any organization
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"middle_initial"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"purchase_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"purchae_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jake"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"middle_initial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jakes@email.org"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22018-07-30 13:28:32"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"purchase_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"purchase_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"donations"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -948,7 +946,96 @@ This call will return an error if the user has an Owner role in any organization
 <p>This endpoint retrieves a specific donor.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://api.give.io/v1/donors/&lt;ID&gt;</code></p>
-<h2 id='create-a-donor'>Create a Donor</h2><h2 id='update-a-donor'>Update a Donor</h2><h2 id='delete-a-specific-donor'>Delete a Specific Donor</h2><h1 id='donations'>Donations</h1><h2 id='get-all-donations'>Get All Donations</h2><h2 id='get-a-specific-donation'>Get a Specific Donation</h2><h2 id='create-a-donation'>Create a Donation</h2><h2 id='update-a-donation'>Update a Donation</h2><h2 id='delete-a-specific-donation'>Delete a Specific Donation</h2><h1 id='subscriptions'>Subscriptions</h1><h2 id='get-all-subscriptions'>Get All Subscriptions</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/subscriptions?filter<span class="o">=</span>user&amp;ID<span class="o">=</span>2
+<h2 id='create-a-donor'>Create a Donor</h2>
+<p>Manually create a new Donor within Give.io. Data must be sent as JSON.
+A donor object would also be created when a donation or subscription is
+created.</p>
+<pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/donors
+  -X POST
+  -d <span class="s1">'{"first_name":"John", "last_name":"Doe", "email": "jdoe@email.com"}'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
+</code></pre><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://api.give.io/v1/donors</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>YES</td>
+<td>Valid Email Address</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>YES</td>
+<td>Donor&#39;s First Name</td>
+</tr>
+<tr>
+<td>middle_initial</td>
+<td>NO</td>
+<td>Donor&#39;s Middle Initial</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>YES</td>
+<td>Donor&#39;s Last Name</td>
+</tr>
+<tr>
+<td>title</td>
+<td>NO</td>
+<td>Donor&#39;s preferred title (eg. Mr, Mrs, Dr, etc)</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-donor'>Update a Donor</h2>
+<p>Update a donor&#39;s details. Data must be sent as JSON.
+Data should be sent as a POST request, not a PUT request.
+Only the fields that are passed are evaluated. To remove a
+field, pass an empty string as the property value.</p>
+<pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/donors/8
+  -X POST
+  -d <span class="s1">'{"first_name":"Jake", "last_name":"Smith", "email": "jsmith@email.com"}'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
+</code></pre><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST https://api.give.io/v1/donors/&lt;ID&gt;</code></p>
+<h2 id='delete-a-specific-donor'>Delete a Specific Donor</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/donors/8
+  -X DELETE
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
+</code></pre>
+<blockquote>
+<p>The above command returns the donor as it existed before deletion:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jake"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"middle_initial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jakes@email.org"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22018-07-30 13:28:32"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-15 11:14:58"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"purchase_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"purchase_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"donations"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a specific donor from the system entirely.
+This call will return an error if the donor has any subscriptions
+or donations that have not been removed first.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>DELETE https://api.give.io/v1/users/&lt;ID&gt;</code></p>
+
+<aside class="warning">This action is immediate and irreversible.</aside>
+<h1 id='donations'>Donations</h1><h2 id='get-all-donations'>Get All Donations</h2><h2 id='get-a-specific-donation'>Get a Specific Donation</h2><h2 id='create-a-donation'>Create a Donation</h2><h2 id='update-a-donation'>Update a Donation</h2><h2 id='delete-a-specific-donation'>Delete a Specific Donation</h2><h1 id='subscriptions'>Subscriptions</h1><h2 id='get-all-subscriptions'>Get All Subscriptions</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/subscriptions?filter<span class="o">=</span>user&amp;ID<span class="o">=</span>2
   -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
