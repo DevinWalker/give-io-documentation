@@ -306,6 +306,12 @@
                     <a href="#get-all-donations" class="toc-h2 toc-link" data-title="get-all-donations">Get All Donations</a>
                   </li>
                   <li>
+                    <a href="#get-all-donations-by-donors" class="toc-h2 toc-link" data-title="get-all-donations-by-donors">Get All Donations by Donors</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-donations-by-campaign" class="toc-h2 toc-link" data-title="get-all-donations-by-campaign">Get All Donations by Campaign</a>
+                  </li>
+                  <li>
                     <a href="#get-a-specific-donation" class="toc-h2 toc-link" data-title="get-a-specific-donation">Get a Specific Donation</a>
                   </li>
                   <li>
@@ -1035,7 +1041,118 @@ or donations that have not been removed first.</p>
 <p><code>DELETE https://api.give.io/v1/users/&lt;ID&gt;</code></p>
 
 <aside class="warning">This action is immediate and irreversible.</aside>
-<h1 id='donations'>Donations</h1><h2 id='get-all-donations'>Get All Donations</h2><h2 id='get-a-specific-donation'>Get a Specific Donation</h2><h2 id='create-a-donation'>Create a Donation</h2><h2 id='update-a-donation'>Update a Donation</h2><h2 id='delete-a-specific-donation'>Delete a Specific Donation</h2><h1 id='subscriptions'>Subscriptions</h1><h2 id='get-all-subscriptions'>Get All Subscriptions</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/subscriptions?filter<span class="o">=</span>user&amp;ID<span class="o">=</span>2
+<h1 id='donations'>Donations</h1><h2 id='get-all-donations'>Get All Donations</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/donations
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
+</code></pre>
+<blockquote>
+<p>The above request returns a collection of JSON objects structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"campaign_ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-18 11:14:58"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transaction_ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ch_1Bqa2P2eZvKYlo2CVaJa8DbC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"receipt_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jsmith@email.com"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all donations.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.give.io/v1/donations</code></p>
+<h2 id='get-all-donations-by-donors'>Get All Donations by Donors</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/donor/8/donations
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
+</code></pre>
+<blockquote>
+<p>The above request returns a collection of JSON objects structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"campaign_ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-18 11:14:58"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transaction_ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ch_1Bqa2P2eZvKYlo2CVaJa8DbC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"receipt_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jsmith@email.com"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all donations tied to a specific donor.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.give.io/v1/donors/&lt;ID&gt;/donations</code></p>
+<h2 id='get-all-donations-by-campaign'>Get All Donations by Campaign</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/campaign/67/donations
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
+</code></pre>
+<blockquote>
+<p>The above request returns a collection of JSON objects structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"campaign_ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-18 11:14:58"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transaction_ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ch_1Bqa2P2eZvKYlo2CVaJa8DbC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"receipt_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jsmith@email.com"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all donations tied to a specific campaign.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://api.give.io/v1/campaigns/&lt;ID&gt;/donations</code></p>
+<h2 id='get-a-specific-donation'>Get a Specific Donation</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/donations/98
+  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
+</code></pre>
+<blockquote>
+<p>The above request returns a JSON object structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"campaign_ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-18 11:14:58"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transaction_ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ch_1Bqa2P2eZvKYlo2CVaJa8DbC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"receipt_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jsmith@email.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific donation transaction.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://api.give.io/v1/donations/&lt;ID&gt;</code></p>
+<h2 id='create-a-donation'>Create a Donation</h2>
+<p>This endpoint creates a new donation transaction.
+If a donor ID is not supplied then a new donor will be created.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST https://api.give.io/v1/donations</code></p>
+<h2 id='update-a-donation'>Update a Donation</h2>
+<p>This endpoint updates a specific donation transaction.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST https://api.give.io/v1/donations/&lt;ID&gt;</code></p>
+<h2 id='delete-a-specific-donation'>Delete a Specific Donation</h2>
+<p>This endpoint deletes a specific donation transaction.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>DELETE https://api.give.io/v1/donations/&lt;ID&gt;</code></p>
+
+<aside class="warning">This action is immediate and irreversible.</aside>
+<h1 id='subscriptions'>Subscriptions</h1><h2 id='get-all-subscriptions'>Get All Subscriptions</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/subscriptions?filter<span class="o">=</span>user&amp;ID<span class="o">=</span>2
   -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
