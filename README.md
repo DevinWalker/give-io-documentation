@@ -16,10 +16,6 @@ You're going to need:
 
 ### Getting Set Up
 
-2. `git clone https://github.com/DevinWalker/give-io-documentation documentation`
-3. `cd documentation`
-
-
 ```shell
 # clone repo
 git clone https://github.com/DevinWalker/give-io-documentation documentation
