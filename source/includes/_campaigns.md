@@ -4,7 +4,8 @@
 
 ```shell
 curl https://api.give.io/v1/campaigns
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -33,7 +34,7 @@ curl https://api.give.io/v1/campaigns
       "progress_color": "",
       "auto_close": true
     },
-    
+
     "terms": {
       "enabled": true,
       "label": "Terms & Conditions",
@@ -58,7 +59,8 @@ This endpoint retrieves a specific campaign.
 
 ```shell
 curl https://api.give.io/v1/campaigns/
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ### HTTP Request
@@ -71,7 +73,8 @@ Create a new campaign within Give.io. Data must be sent as JSON.
 
 ```shell
 curl https://api.give.io/v1/campaigns/
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ### HTTP Request
@@ -80,7 +83,7 @@ curl https://api.give.io/v1/campaigns/
 
 Parameter | Required | Description
 --------- | -------- | -----------
-title | Yes | "Campaign <ID>" | The title of the campaign. 
+title | Yes | "Campaign <ID>" | The title of the campaign.
 
 
 ## Update a Campaign

@@ -8,5 +8,6 @@ By default, the API provides information about all available endpoints on the si
 
 ```shell
 curl https://api.give.io/v1/
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```

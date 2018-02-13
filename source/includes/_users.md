@@ -28,7 +28,8 @@ Support | TBD
 
 ```shell
 $ curl https://api.give.io/v1/users
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -76,7 +77,8 @@ page | 1 | Used along with limit to determine offset.
 
 ```shell
 $ curl https://api.give.io/v1/organization/234/users
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -124,7 +126,8 @@ page | 1 | Used along with limit to determine offset.
 
 ```shell
 $ curl https://api.give.io/v1/users/2
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -168,14 +171,16 @@ $ curl https://api.give.io/v1/users
   -X POST
   -d '{"first_name":"John", "last_name":"Doe", "email": "jdoe@email.com", "password": "ABC123"}'
   -H "Content-Type: application/json"
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 
 # From a file
 $ curl https://api.give.io/v1/users
   -X POST
   -d "@data.json"
   -H "Content-Type: application/json"
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -210,14 +215,16 @@ $ curl https://api.give.io/v1/users/2
   -X POST
   -d '{"first_name":"John", "last_name":"Doe", "email": "jdoe@email.com", "password": "ABC123"}'
   -H "Content-Type: application/json"
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 
 # From a file
 $ curl https://api.give.io/v1/users/2
   -X POST
   -d "@data.json"
   -H "Content-Type: application/json"
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -237,7 +244,8 @@ $ curl https://api.give.io/v1/users/2/avatar
   -X POST
   -d "@john-headshot.jpg"
   -H "Content-Type: application/json"
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -274,7 +282,8 @@ $ curl https://api.give.io/v1/users/2/avatar
 ```shell
 $ curl https://api.give.io/v1/users/2
   -X DELETE
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript

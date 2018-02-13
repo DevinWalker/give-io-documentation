@@ -4,7 +4,8 @@
 
 ```shell
 curl https://api.give.io/v1/donations
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -40,7 +41,8 @@ This endpoint retrieves all donations.
 
 ```shell
 curl https://api.give.io/v1/donor/8/donations
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -76,7 +78,8 @@ This endpoint retrieves all donations tied to a specific donor.
 
 ```shell
 curl https://api.give.io/v1/campaign/67/donations
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -112,7 +115,8 @@ This endpoint retrieves all donations tied to a specific campaign.
 
 ```shell
 curl https://api.give.io/v1/donations/98
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript

@@ -5,7 +5,8 @@
 
 ```shell
 curl https://api.give.io/v1/users/2/donors
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -47,7 +48,8 @@ This endpoint retrieves all donors tied to an account.
 
 ```shell
 curl https://api.give.io/v1/donors/2
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -89,7 +91,8 @@ $ curl https://api.give.io/v1/donors
   -X POST
   -d '{"first_name":"John", "last_name":"Doe", "email": "jdoe@email.com"}'
   -H "Content-Type: application/json"
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -123,7 +126,8 @@ $ curl https://api.give.io/v1/donors/8
   -X POST
   -d '{"first_name":"Jake", "last_name":"Smith", "email": "jsmith@email.com"}'
   -H "Content-Type: application/json"
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
@@ -139,7 +143,8 @@ $ curl https://api.give.io/v1/donors/8
 ```shell
 $ curl https://api.give.io/v1/donors/8
   -X DELETE
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript

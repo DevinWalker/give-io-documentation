@@ -4,7 +4,8 @@
 
 ```shell
 curl https://api.give.io/v1/subscriptions?filter=user&ID=2
-  -H "Authorization: <API_KEY>"
+  -H "give-client: <API_KEY>"
+  -H "Authorization: Bearer <token>"
 ```
 
 ```javascript
