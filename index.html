@@ -238,6 +238,14 @@
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#client-api-key" class="toc-h2 toc-link" data-title="client-api-key">Client API Key</a>
+                  </li>
+                  <li>
+                    <a href="#user-authentication" class="toc-h2 toc-link" data-title="user-authentication">User authentication</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#index" class="toc-h1 toc-link" data-title="index">Index</a>
@@ -532,34 +540,61 @@
 <li><a href="https://addons.mozilla.org/en-US/firefox/addon/restclient/">RESTClient, a debugger for RESTful web services</a> - Free Firefox add-on.</li>
 <li><a href="https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo">Advanced REST client</a> - Free Google Chrome extension.</li>
 </ul>
-<h1 id='authentication'>Authentication</h1>
+<h1 id='authentication'>Authentication</h1><h2 id='client-api-key'>Client API Key</h2>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>To make a successful request with both a client API Key and an Authenticated JWT, use this code:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl https://api.give.io/v1/authenticate
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct headers with each request</span>
+curl https://api.give.io/v1/&lt;endpoint&gt;
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code>&lt;API_KEY&gt;</code> with your valid API key.</p>
 </blockquote>
 
-<p>Give.io uses API keys to allow access to the API. <strong>During beta development, public access is not available</strong>.</p>
+<p>Give.io uses API Client keys to allow access to the API, and JSON Web Tokens for individual user authentication. <strong>During beta development, public access is not available</strong>.</p>
 
-<p>Give.io expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>Give.io expects the API Client key to be included in <em>all</em> API requests to the server in a header that looks like the following:</p>
 
-<p><code>Authorization: &lt;API_KEY&gt;</code></p>
+<p><code>give-client: &lt;API_KEY&gt;</code></p>
 
 <aside class="notice">
 You must replace <code>&lt;API_KEY&gt;</code> with your personal API key.
 </aside>
-<h1 id='index'>Index</h1>
+<h2 id='user-authentication'>User authentication</h2>
+<p>JSON Web Token (JWT) is an open standard (<a href="https://tools.ietf.org/html/rfc7519">RFC 7519</a>) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed by the originating server.</p>
+
+<p>Give.io uses these tokens for user authentication within the application. You will need to pass this token with each request as a typical Authentication header. You can request this initial token from the authentication endpoint with an Authorization header that contains the word <code>Basic</code> word followed by a space and a base64-encoded string <code>username:password</code>.</p>
+
+<blockquote>
+<p>To request an Authenticated JWT, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/authenticate/token
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span>
+</code></pre>
+<aside class="notice">
+You must replace <code>dXNlcm5hbWU6cGFzc3dvcmQ=</code> with your own encoded username and password.
+</aside>
+
+<blockquote>
+<p>The above request returns a basic JSON response object containing your new token:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODg4OC9tZXNhbi1sYXJhdmVsLWp3dC1hdXRoZW50aWNhdGlvbjIvcHVibGljL2FwaS9sb2dpbiIsImlhdCI6MTUwMjU2NzE5MSwiZXhwIjoxNTAyNTcwNzkxLCJuYmYiOjE1MDI1NjcxOTEsImp0aSI6IkVIVWV6dVp0UDhhSmQ2QUUifQ.OjlzNKmTItphLs29B7WsFstmrtgDW2qE7gv26LcR3Og"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="err">```</span><span class="w">
+</span></code></pre><h1 id='index'>Index</h1>
 <p>By default, the API provides information about all available endpoints on the site. Authentication is not required to access the API index.</p>
 <h3 id='http-request'>HTTP request</h3>
 <p><code>GET https://api.give.io/v1/</code></p>
 <pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><h1 id='users'>Users</h1><h3 id='user-object'>User Object</h3>
 <table><thead>
 <tr>
@@ -637,7 +672,8 @@ You must replace <code>&lt;API_KEY&gt;</code> with your personal API key.
 </tr>
 </tbody></table>
 <h2 id='get-all-users'>Get All Users</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/users
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
 <blockquote>
@@ -685,7 +721,8 @@ You must replace <code>&lt;API_KEY&gt;</code> with your personal API key.
 </tr>
 </tbody></table>
 <h2 id='get-users-from-organization'>Get Users From Organization</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/organization/234/users
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
 <blockquote>
@@ -733,7 +770,8 @@ You must replace <code>&lt;API_KEY&gt;</code> with your personal API key.
 </tr>
 </tbody></table>
 <h2 id='get-a-specific-user'>Get a Specific User</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/users/2
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// javascript</span>
 </code></pre>
 <blockquote>
@@ -766,14 +804,16 @@ You must replace <code>&lt;API_KEY&gt;</code> with your personal API key.
   -X POST
   -d <span class="s1">'{"first_name":"John", "last_name":"Doe", "email": "jdoe@email.com", "password": "ABC123"}'</span>
   -H <span class="s2">"Content-Type: application/json"</span>
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 
 <span class="c"># From a file</span>
 <span class="gp">$ </span>curl https://api.give.io/v1/users
   -X POST
   -d <span class="s2">"@data.json"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
 </code></pre><h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST https://api.give.io/v1/users</code></p>
@@ -826,14 +866,16 @@ field, pass an empty string as the property value.</p>
   -X POST
   -d <span class="s1">'{"first_name":"John", "last_name":"Doe", "email": "jdoe@email.com", "password": "ABC123"}'</span>
   -H <span class="s2">"Content-Type: application/json"</span>
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 
 <span class="c"># From a file</span>
 <span class="gp">$ </span>curl https://api.give.io/v1/users/2
   -X POST
   -d <span class="s2">"@data.json"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
 </code></pre><h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST https://api.give.io/v1/users/&lt;ID&gt;</code></p>
@@ -843,7 +885,8 @@ field, pass an empty string as the property value.</p>
   -X POST
   -d <span class="s2">"@john-headshot.jpg"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
 </code></pre>
 <blockquote>
@@ -869,7 +912,8 @@ field, pass an empty string as the property value.</p>
 <p><code>POST https://api.give.io/v1/users/&lt;ID&gt;/avatar</code></p>
 <h2 id='delete-a-specific-user'>Delete a Specific User</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/users/2
   -X DELETE
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
 </code></pre>
 <blockquote>
@@ -900,7 +944,8 @@ This call will return an error if the user has an Owner role in any organization
 
 <aside class="warning">This action is immediate and irreversible.</aside>
 <h1 id='donors'>Donors</h1><h2 id='get-all-donors'>Get All Donors</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/users/2/donors
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
 <blockquote>
@@ -929,7 +974,8 @@ This call will return an error if the user has an Owner role in any organization
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.give.io/v1/users/&lt;ID&gt;/donors</code></p>
 <h2 id='get-a-specific-donor'>Get a Specific Donor</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/donors/2
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// javascript</span>
 </code></pre>
 <blockquote>
@@ -960,7 +1006,8 @@ created.</p>
   -X POST
   -d <span class="s1">'{"first_name":"John", "last_name":"Doe", "email": "jdoe@email.com"}'</span>
   -H <span class="s2">"Content-Type: application/json"</span>
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
 </code></pre><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST https://api.give.io/v1/donors</code></p>
@@ -1007,13 +1054,15 @@ field, pass an empty string as the property value.</p>
   -X POST
   -d <span class="s1">'{"first_name":"Jake", "last_name":"Smith", "email": "jsmith@email.com"}'</span>
   -H <span class="s2">"Content-Type: application/json"</span>
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
 </code></pre><h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST https://api.give.io/v1/donors/&lt;ID&gt;</code></p>
 <h2 id='delete-a-specific-donor'>Delete a Specific Donor</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.give.io/v1/donors/8
   -X DELETE
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javscript</span>
 </code></pre>
 <blockquote>
@@ -1042,7 +1091,8 @@ or donations that have not been removed first.</p>
 
 <aside class="warning">This action is immediate and irreversible.</aside>
 <h1 id='donations'>Donations</h1><h2 id='get-all-donations'>Get All Donations</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/donations
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
 <blockquote>
@@ -1066,7 +1116,8 @@ or donations that have not been removed first.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.give.io/v1/donations</code></p>
 <h2 id='get-all-donations-by-donors'>Get All Donations by Donors</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/donor/8/donations
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
 <blockquote>
@@ -1090,7 +1141,8 @@ or donations that have not been removed first.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://api.give.io/v1/donors/&lt;ID&gt;/donations</code></p>
 <h2 id='get-all-donations-by-campaign'>Get All Donations by Campaign</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/campaign/67/donations
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
 <blockquote>
@@ -1114,7 +1166,8 @@ or donations that have not been removed first.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://api.give.io/v1/campaigns/&lt;ID&gt;/donations</code></p>
 <h2 id='get-a-specific-donation'>Get a Specific Donation</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/donations/98
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
 <blockquote>
@@ -1153,7 +1206,8 @@ If a donor ID is not supplied then a new donor will be created.</p>
 
 <aside class="warning">This action is immediate and irreversible.</aside>
 <h1 id='subscriptions'>Subscriptions</h1><h2 id='get-all-subscriptions'>Get All Subscriptions</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/subscriptions?filter<span class="o">=</span>user&amp;ID<span class="o">=</span>2
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
 <blockquote>
@@ -1199,7 +1253,8 @@ If a donor ID is not supplied then a new donor will be created.</p>
 </tr>
 </tbody></table>
 <h2 id='get-a-specific-subscription'>Get a Specific Subscription</h2><h2 id='create-a-subscription'>Create a Subscription</h2><h2 id='update-a-subscription'>Update a Subscription</h2><h2 id='delete-a-specific-subscription'>Delete a Specific Subscription</h2><h1 id='campaigns'>Campaigns</h1><h2 id='get-all-campaigns'>Get All Campaigns</h2><pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/campaigns
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript Examples Coming Soon</span>
 </code></pre>
 <blockquote>
@@ -1241,13 +1296,15 @@ If a donor ID is not supplied then a new donor will be created.</p>
 
 <p>This endpoint retrieves a specific campaign.</p>
 <pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/campaigns/
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://api.give.io/v1/campaigns/ID/</code></p>
 <h2 id='create-a-new-campaign'>Create a New Campaign</h2>
 <p>Create a new campaign within Give.io. Data must be sent as JSON.</p>
 <pre class="highlight shell tab-shell"><code>curl https://api.give.io/v1/campaigns/
-  -H <span class="s2">"Authorization: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"give-client: &lt;API_KEY&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST https://api.give.io/v1/campaigns/</code></p>
 
