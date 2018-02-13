@@ -17,6 +17,38 @@ To use the latest version of the REST API you must be:
 https://api.give.io/v1/
 ```
 
+## Response Structure ##
+
+Give.io sends its API responses in a response wrapper along with additional information, such as whether or not the request was successful, any error messages if it was not, or pagination links for large collections. If the endpoint you requested returns any data, it will be in the response object's `data` property.
+
+
+> Response Object example:
+
+```json
+{
+  "data" : [
+    {...},
+    {...}
+  ],
+  "success" : "true",
+  "links": {
+    "first": "https://api.give.io/v1/donors?page=1",
+    "last": "https://api.give.io/v1/donors?page=1",
+    "prev": null,
+    "next": null
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 1,
+    "path": "https://api.give.io/v1/donors",
+    "per_page": 15,
+    "to": 10,
+    "total": 10
+  }
+}
+```
+
 ## Errors ##
 
 Occasionally you might encounter errors when accessing the API. There are four possible types:
@@ -36,12 +68,11 @@ Error Code | Meaning
 
 ```json
 {
-  "errors" : [
-    {
-      "code" : "giveio_api_unsupported_method",
-      "message" : "Unsupported request method"
-    }
-  ]
+  "data" :     {
+    "code" : "giveio_api_unsupported_method",
+    "message" : "Unsupported request method"
+  },
+  "success" : "false"
 }
 ```
 
@@ -49,12 +80,11 @@ Error Code | Meaning
 
 ```json
 {
-  "errors" : [
-    {
-      "code" : "giveio_api_authentication_error",
-      "message" : "Consumer Key is invalid"
-    }
-  ]
+  "data" :     {
+    "code" : "giveio_api_authentication_error",
+    "message" : "Consumer Key is invalid"
+  },
+  "success" : "false"
 }
 ```
 
@@ -62,12 +92,11 @@ Error Code | Meaning
 
 ```json
 {
-  "errors" : [
-    {
-      "code" : "giveio_api_invalid_order",
-      "message" : "Invalid order"
-    }
-  ]
+  "data" :     {
+    "code" : "giveio_api_invalid_order",
+    "message" : "Invalid order"
+  },
+  "success" : "false"
 }
 ```
 
@@ -75,12 +104,11 @@ Error Code | Meaning
 
 ```json
 {
-  "errors" : [
-    {
-      "code" : "giveio_api_invalid_handler",
-      "message" : "The handler for the route is invalid"
-    }
-  ]
+  "data" :     {
+    "code" : "giveio_api_invalid_handler",
+    "message" : "The handler for the route is invalid"
+  },
+  "success" : "false"
 }
 ```
 
